@@ -1,0 +1,27 @@
+关于闭包
+function count() {
+    var arr = [];
+    for (var i=1; i<=3; i++) {
+        arr.push(function () {
+            return i * i;
+        });
+    }
+    return arr;
+}
+
+var results = count();
+var f1 = results[0];//result[0]调用的是arr[0]中的function函数；
+var f2 = results[1];
+var f3 = results[2];
+
+一个有趣的例子
+f1(),f2(),f3()结果都是16。
+返回函数都引用了局部变量i，当他们调用局部变量i时，那会i=4；
+
+generator生成器
+function* foo(x) {
+    yield x + 1;
+    yield x + 2;
+    return x + 3;
+}
+可以返回多次值得函数。
